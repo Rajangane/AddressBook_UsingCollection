@@ -11,6 +11,10 @@ namespace AddressBook_UsingCollection
         //list declaration to store the personal details
         List<Contacts> listcontacts = new List<Contacts>();
         Dictionary<string, Contacts> dic = new Dictionary<string, Contacts>();
+        List<Contacts> searchcity = new List<Contacts>();
+       List<Contacts> list1 = new List<Contacts>();//list for city
+        List<Contacts> list2 = new List<Contacts>();//list for state
+
 
         public void Add()//add method 
         {
@@ -44,6 +48,35 @@ namespace AddressBook_UsingCollection
                 phone_no = phone_no,
                 email = email
             });
+
+        }
+        /// <summary>
+        /// Edit Method
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="first"></param>
+        /// <param name="last"></param>
+        /// <param name="add"></param>
+        /// <param name="cityN"></param>
+        /// <param name="stateN"></param>
+        public void Edit(string name, string first, string last, string add, string cityN, string stateN)
+        {
+            int indexOfContact = -1;
+            for (int i = 0; i < listcontacts.Count; i++)
+            {
+                if (listcontacts[i].first_name == name)
+                {
+                    indexOfContact = i;
+                }
+            }
+
+            var editContact = listcontacts[indexOfContact];
+            editContact.first_name = first;
+            editContact.last_name = last;
+            editContact.address = add;
+            editContact.city = cityN;
+            editContact.state = stateN;
+            listcontacts[indexOfContact] = editContact;
 
         }
         public void Print()//Print method 
