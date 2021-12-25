@@ -11,6 +11,10 @@ namespace AddressBook_UsingCollection
         //list declaration to store the personal details
         List<Contacts> listcontacts = new List<Contacts>();
         Dictionary<string, Contacts> dic = new Dictionary<string, Contacts>();
+        List<Contacts> searchcity = new List<Contacts>();
+        List<Contacts> list1 = new List<Contacts>();//list for city
+        List<Contacts> list2 = new List<Contacts>();//list for state
+
 
 
         public void Add()//add method 
@@ -80,6 +84,30 @@ namespace AddressBook_UsingCollection
             listcontacts.RemoveAt(indexOfContact);
 
         }
+        public void SearchContact(string cityName, string statename)
+        {
+            searchcity = listcontacts.FindAll(x => (x.city == cityName || x.state == statename));//Lambda Expression
+
+            foreach (Contacts i in searchcity)
+            {
+                Console.WriteLine("Person First Name : " + i.first_name);
+            }
+        }
+        public void SearchCityState(string cityName, string stateName)
+        {
+            list1 = listcontacts.FindAll(x => (x.city == cityName));//to check the names in city
+
+            foreach (Contacts i in list1)
+            {
+                Console.WriteLine("person in {0} City is : {1}", cityName, i.first_name);
+            }
+            list2 = listcontacts.FindAll(x => (x.state == stateName));//to check the Names in State
+            foreach (Contacts i in list2)
+            {
+                Console.WriteLine("person in {0} State is : {1}", stateName, i.first_name);
+            }
+        }
+
         public void Print()//Print method 
         {
             for (int i = 0; i < listcontacts.Count; i++)
